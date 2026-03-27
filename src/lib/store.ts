@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect, useCallback } from "react";
-import { vehicles, drivers, clients, defaultTrips, defaultExpenses, defaultServices, defaultInvoices } from "./data";
-import type { Vehicle, Driver, Client, Trip, Expense, ServiceRequest, Invoice } from "./data";
+import { vehicles, drivers, clients, defaultTrips, defaultExpenses, defaultServices, defaultInvoices, defaultMaintenance, defaultRates, defaultReports } from "./data";
+import type { Vehicle, Driver, Client, Trip, Expense, ServiceRequest, Invoice, Maintenance, Rate, ServiceReport } from "./data";
 
 function load<T>(key: string, fb: T): T {
   if (typeof window === "undefined") return fb;
@@ -24,4 +24,7 @@ export function useTrips() { return useStore<Trip[]>("trips", defaultTrips); }
 export function useExpenses() { return useStore<Expense[]>("expenses", defaultExpenses); }
 export function useServices() { return useStore<ServiceRequest[]>("services", defaultServices); }
 export function useInvoices() { return useStore<Invoice[]>("invoices", defaultInvoices); }
+export function useMaintenance() { return useStore<Maintenance[]>("maintenance", defaultMaintenance); }
+export function useRates() { return useStore<Rate[]>("rates", defaultRates); }
+export function useReports() { return useStore<ServiceReport[]>("reports", defaultReports); }
 export function genId() { return Math.random().toString(36).substring(2, 9); }

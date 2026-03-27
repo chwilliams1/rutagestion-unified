@@ -97,6 +97,33 @@ export const gpsPositions: GpsPosition[] = [
   { vehicleId: "v5", lat: -33.440, lng: -70.630, speed: 45, status: "movimiento", lastUpdate: "2026-03-27 15:29" },
 ];
 
+export interface Maintenance { id: string; vehicleId: string; tipo: "preventivo" | "correctivo" | "revision"; descripcion: string; fecha: string; km: number; costo: number; taller: string; proximoKm?: number; proximaFecha?: string; }
+export interface Rate { id: string; nombre: string; valorHora: number; valorKm: number; minimoHoras: number; activa: boolean; }
+export interface ServiceReport { id: string; serviceRequestId: string; driverId: string; fecha: string; horas: number; horasExtra: number; valorHora: number; monto: number; descripcion: string; }
+export interface CalendarEvent { id: string; titulo: string; fecha: string; tipo: "viaje" | "servicio" | "mantencion" | "documento" | "factura"; refId: string; color: string; }
+
+export const defaultMaintenance: Maintenance[] = [
+  { id: "m1", vehicleId: "v1", tipo: "preventivo", descripcion: "Cambio aceite motor + filtros", fecha: "2026-03-15", km: 245000, costo: 185000, taller: "Taller MecaniCar", proximoKm: 255000, proximaFecha: "2026-06-15" },
+  { id: "m2", vehicleId: "v1", tipo: "correctivo", descripcion: "Reparacion sistema de frenos trasero", fecha: "2026-02-20", km: 240000, costo: 420000, taller: "Frenos Express" },
+  { id: "m3", vehicleId: "v2", tipo: "preventivo", descripcion: "Cambio aceite + revision general", fecha: "2026-03-10", km: 198000, costo: 165000, taller: "Volvo Service", proximoKm: 208000, proximaFecha: "2026-06-10" },
+  { id: "m4", vehicleId: "v3", tipo: "revision", descripcion: "Inspeccion anual grua - certificacion", fecha: "2026-01-15", km: 52000, costo: 350000, taller: "Liebherr Chile" },
+  { id: "m5", vehicleId: "v4", tipo: "correctivo", descripcion: "Cambio aceite + filtros + reparacion fuga", fecha: "2026-03-24", km: 178000, costo: 350000, taller: "Taller MecaniCar" },
+  { id: "m6", vehicleId: "v5", tipo: "preventivo", descripcion: "Mantencion 20.000 km programada", fecha: "2026-03-01", km: 20000, costo: 120000, taller: "Hyundai Rancagua", proximoKm: 30000, proximaFecha: "2026-06-01" },
+  { id: "m7", vehicleId: "v2", tipo: "correctivo", descripcion: "Reemplazo alternador", fecha: "2026-01-28", km: 192000, costo: 280000, taller: "Electro Auto" },
+  { id: "m8", vehicleId: "v1", tipo: "preventivo", descripcion: "Rotacion neumaticos + alineacion", fecha: "2026-03-23", km: 248000, costo: 95000, taller: "Neumaticos Pro" },
+];
+export const defaultRates: Rate[] = [
+  { id: "r1", nombre: "Grua pluma standard", valorHora: 85000, valorKm: 0, minimoHoras: 4, activa: true },
+  { id: "r2", nombre: "Grua pluma nocturno", valorHora: 120000, valorKm: 0, minimoHoras: 4, activa: true },
+  { id: "r3", nombre: "Flete camion zona central", valorHora: 0, valorKm: 1200, minimoHoras: 0, activa: true },
+  { id: "r4", nombre: "Flete camion interurbano", valorHora: 0, valorKm: 950, minimoHoras: 0, activa: true },
+  { id: "r5", nombre: "Traslado especial", valorHora: 65000, valorKm: 800, minimoHoras: 2, activa: true },
+];
+export const defaultReports: ServiceReport[] = [
+  { id: "sr1", serviceRequestId: "s4", driverId: "d3", fecha: "2026-03-25", horas: 6, horasExtra: 1.5, valorHora: 85000, monto: 637500, descripcion: "Traslado completado sin incidentes. Generador de 2.5 ton." },
+  { id: "sr2", serviceRequestId: "s1", driverId: "d3", fecha: "2026-03-27", horas: 4, horasExtra: 0, valorHora: 85000, monto: 340000, descripcion: "Izaje en curso - estructura de 8m instalada parcialmente" },
+];
+
 export function formatCLP(n: number): string { return "$" + n.toLocaleString("es-CL"); }
 export function getVehicle(id: string) { return vehicles.find(v => v.id === id); }
 export function getDriver(id: string) { return drivers.find(d => d.id === id); }

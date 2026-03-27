@@ -1,19 +1,23 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { LayoutDashboard, Truck, Users, FileText, Route, Wrench, Building2, Receipt, FileSpreadsheet, DollarSign, MapPin } from "lucide-react";
+import { LayoutDashboard, Truck, Users, FileText, Route, Wrench, Building2, Receipt, FileSpreadsheet, DollarSign, MapPin, Settings, Calendar, ClipboardList, Calculator, Tag } from "lucide-react";
 
 const sections = [
-  { label: "GENERAL", items: [{ href: "/app/dashboard", name: "Dashboard", icon: LayoutDashboard }] },
+  { label: "GENERAL", items: [{ href: "/app/dashboard", name: "Dashboard", icon: LayoutDashboard }, { href: "/app/calendario", name: "Calendario", icon: Calendar }] },
   { label: "FLOTA", items: [
     { href: "/app/equipos", name: "Equipos", icon: Truck },
     { href: "/app/conductores", name: "Conductores", icon: Users },
+    { href: "/app/mantenciones", name: "Mantenciones", icon: Settings },
     { href: "/app/documentos", name: "Documentos", icon: FileText },
   ]},
   { label: "OPERACIONES", items: [
     { href: "/app/viajes", name: "Viajes", icon: Route },
     { href: "/app/servicios", name: "Servicios", icon: Wrench },
+    { href: "/app/reportes", name: "Reportes", icon: ClipboardList },
     { href: "/app/clientes", name: "Clientes", icon: Building2 },
+    { href: "/app/tarifas", name: "Tarifas", icon: Tag },
+    { href: "/app/cotizador", name: "Cotizador", icon: Calculator },
   ]},
   { label: "FINANZAS", items: [
     { href: "/app/gastos", name: "Gastos", icon: Receipt },
